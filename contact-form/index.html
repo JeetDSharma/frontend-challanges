@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Contact form</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    * {
+  box-sizing: border-box;
+}
+    body {
+      margin: 0;
+      padding:0;
+      min-height: 100vh;
+      background-color: hsl(148, 38%, 91%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+    }
+    .container {
+      background-color: white;
+      padding: 3rem 6rem;
+      width: 100%;
+      max-width: 720px;
+      border-radius: 1rem;
+    }
+    .user_feedback_form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem
+    }
+    .name {
+      display: flex;
+      gap: 1rem;
+    }
+    .name div{
+      flex: 1
+    }
+    .query_section {
+      display: flex;
+      flex-direction: column;
+    }
+    .query_subsection {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem
+    }
+    .query_button_div {
+      border-color: hsl(186, 15%, 59%);
+      padding: 0.5rem;
+      border-width: 1px;
+      border-style: solid;
+      border-radius: 0.4rem;
+    }
+    .input_text_box {
+      padding: 0.5rem;
+      width: 100%;
+      border-color: hsl(186, 15%, 59%);
+      border-style: solid;
+    }
+    
+    .message_section {
+      display: flex;
+      flex-direction: column;
+    }
+    .message_box {
+      width: 100%;
+      padding: 2ch;
+      border-color: hsl(186, 15%, 59%);
+    }
+    .submit_btn {
+      background-color: hsl(169, 82%, 27%);
+      border-style: none;
+      padding: 1rem;
+    }
+    input[type=text]:focus  {
+      border: 2px;
+      border-style: solid;
+      border-color: hsl(169, 82%, 27%);
+    }
+    input[type=email]:focus  {
+      border: 2px;
+      border-style: solid;
+      border-color: hsl(169, 82%, 27%);
+    }
+    textarea:focus  {
+      border: 2px;
+      border-style: solid;
+      border-color: hsl(169, 82%, 27%);
+    }
+    input[type=text] {
+      outline: none;
+      border-radius: 0.5rem;
+    }
+    input[type=email] {
+      outline: none;
+      border-radius: 0.5rem;  
+    }
+    input[type=radio] {
+      outline: none;
+    }
+    input[type=checkbox] {
+      outline: none;
+    }
+    textarea{
+      outline: none;
+      border-radius: 0.5rem;
+    }
+  </style>
+</head> 
+<body>
+
+  <div class="container">
+    <form class = "user_feedback_form">
+      <h2> Contact Us</h2>
+      <div class="name">
+        <div>
+          <label for="fname">First Name</label>
+          <input type="text"  name="fname" id="fname" class="input_text_box" required/>
+        </div>
+        <div>
+          <label for="lname">Last Name</label>
+          <input type="text" name="lname" id="lname" class="input_text_box" required/>
+        </div>
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" class="input_text_box" required/>
+      </div>
+      <div class="query_section">
+        <p>Query Type</p>
+        <div class="query_subsection">
+          <div class="query_button_div">
+            <input type="radio" name="query_type" id="general_enquery" value="General Enquiry"/>
+            <label for="query_type">General Enquiry</label>
+          </div>
+          <div class="query_button_div">
+            
+            <input type="radio" name="query_type" id="support_request" value="Support Request"/>
+            <label for="query_type">Support Request</label>
+          </div>
+        </div>
+      </div>
+      <div class="message_section">
+        <label for="message">Message</label>
+        <textarea class = "message_box" placeholder="Please enter you message"></textarea>
+      </div>
+      <div >
+        <input type="checkbox" required id="consent" name="consent" oninvalid="this.setCustomValidity('To submit this form, please consent to being contacted')" oninput="this.setCustomValidity('')">
+        <label for="consent">  I consent to being contacted by the team</label>
+      </div>
+      <button type="submit" class="submit_btn">Submit</button>
+    </form>
+  </div>
+
+  <!-- Contact Us
+
+  First Name
+  This field is required
+
+  Last Name
+  This field is required
+
+  Email Address
+  Please enter a valid email address
+  This field is required
+
+  Query Type
+  General Enquiry
+  Support Request
+  Please select a query type
+
+  Message
+  This field is required
+
+  I consent to being contacted by the team
+
+  Submit
+
+  Message Sent!
+  Thanks for completing the form. We'll be in touch soon! -->
+  
+</body>
+</html>
