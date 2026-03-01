@@ -8,5 +8,5 @@ A collection of small Frontend Mentor challenges to practice responsive UI, layo
 
 ## Blog Preview Card
 
-- [Live Demo](hhttps://frontend-challenge-projects.netlify.app/blog-card//)
+- [Live Demo](https://frontend-challenge-projects.netlify.app/blog-card//)
 - [Source Code](https://github.com/JeetDSharma/frontend-challanges/tree/main/blog-card)
