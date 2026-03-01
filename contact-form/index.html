@@ -90,6 +90,11 @@
       background-color: hsl(169, 82%, 27%);
       border-style: none;
       padding: 1rem;
+      cursor: pointer;
+    }
+    .submit_btn:active {
+      transform: scale(0.98);
+      opacity: 0.8;
     }
     input[type=text]:focus  {
       border: 2px;
@@ -134,12 +139,46 @@
     input[type=checkbox] {
       cursor: pointer;
     }
+
+
+    .success_modal{
+      display: none;
+      position: absolute;
+      top: 0;
+      margin-top: 1rem;
+      z-index: 1;
+      background-color: hsl(187, 24%, 22%);
+      color: hsl(0, 0%, 100%);
+      padding: 0.5rem 1rem;
+      width: 100%;
+      max-width: 420px;
+      border-radius: 1rem;
+    }
+    .success_modal_header {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    .success_modal_header img{
+      height: 1rem;
+      width: 1rem;
+    }
   </style>
 </head> 
 <body>
-
+  <div class="success_modal" id="success_modal">
+    <div class="success_modal_header">
+      <img src="assets/images/icon-success-check.svg" alt="">
+      <h3>
+        Message Sent!
+      </h3>
+    </div>
+    <p style="font-size: 0.8rem">
+      Thanks for completing the form we will be in touch soon.
+    </p>
+  </div>
   <div class="container">
-    <form class = "user_feedback_form">
+    <form class = "user_feedback_form" onsubmit="handleContactFormSubmit(event)">
       <h2> Contact Us</h2>
       <div class="name">
         <div>
@@ -181,6 +220,16 @@
     </form>
   </div>
 
+  <script>
+    function handleContactFormSubmit(e){
+      e.preventDefault();
+      const success_modal = document.getElementById('success_modal');
+      success_modal.style.display = 'block';
+      setTimeout(()=>{
+        success_modal.style.display = 'none'
+      },2500)
+    }
+  </script>
   <!-- Contact Us
 
   First Name
