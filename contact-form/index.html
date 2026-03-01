@@ -10,10 +10,17 @@
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
+    @font-face {
+      font-family: "Karla";
+      src: url("./assets/fonts/Karla-VariableFont_wght.ttf") format("truetype");
+      font-weight: 400 700;
+      font-style: normal;
+    }
     * {
   box-sizing: border-box;
 }
     body {
+      font-family: "Karla", sans-serif;
       margin: 0;
       padding:0;
       min-height: 100vh;
@@ -38,6 +45,7 @@
     }
     .name {
       display: flex;
+      flex-wrap: wrap;
       gap: 1rem;
     }
     .name div{
@@ -49,6 +57,7 @@
     }
     .query_subsection {
       display: flex;
+      flex-wrap: wrap;
       flex-direction: row;
       gap: 1rem
     }
@@ -56,6 +65,8 @@
       border-color: hsl(186, 15%, 59%);
       padding: 0.5rem;
       border-width: 1px;
+
+      flex: 1;
       border-style: solid;
       border-radius: 0.4rem;
     }
@@ -72,7 +83,7 @@
     }
     .message_box {
       width: 100%;
-      padding: 2ch;
+      padding: 2rem;
       border-color: hsl(186, 15%, 59%);
     }
     .submit_btn {
@@ -113,6 +124,16 @@
       outline: none;
       border-radius: 0.5rem;
     }
+    input {
+      margin-top: 0.25rem;
+      cursor: pointer;
+    }
+    input[type=radio] {
+      cursor: pointer;
+    }
+    input[type=checkbox] {
+      cursor: pointer;
+    }
   </style>
 </head> 
 <body>
@@ -138,19 +159,19 @@
         <p>Query Type</p>
         <div class="query_subsection">
           <div class="query_button_div">
-            <input type="radio" name="query_type" id="general_enquery" value="General Enquiry"/>
+            <input type="radio" name="query_type" id="general_enquery" value="General Enquiry" required/>
             <label for="query_type">General Enquiry</label>
           </div>
           <div class="query_button_div">
             
-            <input type="radio" name="query_type" id="support_request" value="Support Request"/>
+            <input type="radio" name="query_type" id="support_request" value="Support Request" required/>
             <label for="query_type">Support Request</label>
           </div>
         </div>
       </div>
       <div class="message_section">
         <label for="message">Message</label>
-        <textarea class = "message_box" placeholder="Please enter you message"></textarea>
+        <textarea class = "message_box" placeholder="Please enter you message" required></textarea>
       </div>
       <div >
         <input type="checkbox" required id="consent" name="consent" oninvalid="this.setCustomValidity('To submit this form, please consent to being contacted')" oninput="this.setCustomValidity('')">
