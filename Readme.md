@@ -1,6 +1,6 @@
 ## README
 
-A collection of small Frontend Mentor challenges to practice responsive UI, layout, and styling.
+A collection of small Frontend challenges to practice responsive UI, layout, and styling.
 
 ## Table of Contents
 
