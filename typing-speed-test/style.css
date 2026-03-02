@@ -19,7 +19,7 @@ background-color: hsl(0, 0%, 7%);
     width: 100%;
     max-width: 90vw;
     padding: 2rem;
-    background-color: gray;
+    background-color: hsl(0, 0%, 15%);
     height: 100%;
     min-height: 80vh;
     display: flex;
@@ -68,8 +68,14 @@ background-color: hsl(0, 0%, 7%);
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
-    background-color: hsl(240, 3%, 46%);
+    background-color: hsl(0, 0%, 15%);
     align-self: center;
+}
+.restart_btn:hover{
+    /* ease-in-out */
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.1);
+    cursor: pointer;
 }
 .restart_btn img{
     height: 1rem;
@@ -78,13 +84,33 @@ background-color: hsl(0, 0%, 7%);
 .restart_btn button{
     padding: 0.5rem;
     background-color: inherit;
-
+    border: none;
 }
 
-/* .difficulty label input{
+.difficulty label input{
     display: none;
-} */
-
+}
+.difficulty label input:checked + span{
+    color: hsl(210, 100%, 65%);
+}
+.difficulty label{
+    cursor: pointer;
+}
+.difficulty label:hover{
+    transform: scale(1.1);
+}
+.mode label input{
+    display: none;
+}
+.mode label {
+    cursor: pointer;
+}
+.mode label:hover{
+    transform: scale(1.1);
+}
+.mode label input:checked + span{
+    color: hsl(210, 100%, 65%);
+}
 /* Results PAGE CSS */
 
 .resultHeader{
