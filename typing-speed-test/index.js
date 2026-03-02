@@ -142,7 +142,19 @@ document.addEventListener("DOMContentLoaded", function () {
   initializeTypingTest();
 });
 
-
+function handleTestCompletionModal(){
+    const completionModal = document.getElementById("completionModal");
+    if(typingTestStatus == "completed"){
+        const completionModal_wpm = document.getElementById("completionModal_wpm");
+        const completionModal_raw_wpm = document.getElementById("completionModal_raw_wpm");
+        completionModal_raw_wpm.innerHTML = wpm;
+        completionModal_wpm.innerHTML = netWpm;
+        completionModal.style.display = "block";
+    }
+    else{
+        completionModal.style.display = "none";
+    }
+}
 
 function resetStats() {
   const timeSpan = document.getElementById("time");
@@ -168,7 +180,7 @@ function handleTestCompletion() {
      bestWPM = localStorage.getItem("bestWPM");
 const personalBestSpan = document.getElementById("personal_best");
 personalBestSpan.innerHTML = bestWPM;
-  alert("Completed");
+  handleTestCompletionModal()
 }
 
 function setTime(mode) {
@@ -269,6 +281,7 @@ function initializeTypingTest() {
     clearInterval(timerHandler);
     clearInterval(wpmHandler)
     resetStats();
+    handleTestCompletionModal()
   }
   const passageSpan = document.getElementById("passage");
   const difficultyElement = document.querySelector(

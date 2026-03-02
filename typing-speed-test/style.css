@@ -3,7 +3,7 @@
 padding: 0;
 margin: 0;
 box-sizing: border-box;
-color: hsl(0, 0%, 100%);
+
 }
 
 body {
@@ -13,6 +13,7 @@ background-color: hsl(0, 0%, 7%);
     align-items: center;
     justify-content: center;
     display: flex;
+    color: hsl(0, 0%, 100%);
 }
 
 .container {
@@ -25,6 +26,7 @@ background-color: hsl(0, 0%, 7%);
     display: flex;
     flex-direction: column;
     justify-content: center;
+    border-radius: 1rem;
 }
 
 .header {
@@ -85,6 +87,7 @@ background-color: hsl(0, 0%, 7%);
     padding: 0.5rem;
     background-color: inherit;
     border: none;
+    color: hsl(0, 0%, 100%);
 }
 
 .difficulty label input{
@@ -111,6 +114,41 @@ background-color: hsl(0, 0%, 7%);
 .mode label input:checked + span{
     color: hsl(210, 100%, 65%);
 }
+/* Completion Modal */
+
+.completionModal{
+    display: none;
+    position: absolute;
+    top: 0;
+    padding: 2rem;
+    background-color:hsl(210, 25%, 25%);
+    border-radius: 1rem;
+    font-weight: 600;
+}
+.completionModal h3{
+    font-size: 2rem;
+}
+.completionModal p{
+    font-size: 1rem;
+}
+.completionModalBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding-top: 1rem;
+}
+.completionModalBtn button{
+    padding: 0.5rem;
+    background-color: inherit;
+    border: none;
+    color: hsl(0, 0%, 100%);
+}
+.completionModalBtn button:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
 /* Results PAGE CSS */
 
 .resultHeader{

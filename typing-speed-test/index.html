@@ -13,6 +13,16 @@
   <script src="index.js"></script>
 </head>
 <body onkeydown="checkKeyPress(event)">
+
+  <div class="completionModal" id="completionModal">
+    <h3>Test Complete!</h3>
+    <p>Solid run. Keep pushing to beat your high score.</p>
+    <p>Raw WPM: <span id="completionModal_raw_wpm"></span></p>
+    <p>Net WPM: <span id="completionModal_wpm"></span></p>
+    <div class="completionModalBtn">
+      <button onclick="initializeTypingTest()">Go Again</button>
+    </div>
+  </div>
   
   <div class="container">
     <div class="header">
