@@ -152,10 +152,10 @@ function setTime(mode) {
   const timeSpan = document.getElementById("time");
   const curTime = Date.now();
 
-  let timeSecond = Math.floor((curTime - startTime) / 1000);
-  let timeMinute = Math.floor(timeSecond / 60);
+  const timeNanoSeconds = curTime - startTime //use for baseline calculations
+  const timeSecond = Math.floor( timeNanoSeconds/ 1000) % 60;
+  const timeMinute = Math.floor(timeNanoSeconds / 60000);
 
-  timeSecond = timeSecond % 60;
   console.log(timeSecond, timeMinute);
   let timeSecondString = "00";
   let timeMinuteString = "00";
@@ -174,11 +174,24 @@ function setTime(mode) {
   timeSpan.innerHTML = timeMinuteString + ":" + timeSecondString;
 }
 
-function setAccuracy(){
+function setAccuracy(startTime){
     const accuracySpan = document.getElementById("accuracy");
     const accuracy = Math.floor((correctKeyStroke/wordsTyped)*100)
     
     accuracySpan.innerHTML = String(accuracy)+"%"
+}
+
+function setWPM(startTime){
+    const wpmSpan = document.getElementById("wpm");
+
+    const curTime = Date.now();
+    const timeNanoSeconds = curTime - startTime //use for baseline calculations
+    const timeMinute = timeNanoSeconds / 60000;
+
+    const wpm = Math.round(wordsTyped/5 / timeMinute)
+
+    wpmSpan.innerHTML = wpm
+
 }
 
 function checkKeyPress(e) {
@@ -195,8 +208,8 @@ function checkKeyPress(e) {
   }
   // detect spacebar
   if(keyPressed == ' '){
-
         setAccuracy()
+        setWPM(startTime)
   }
   if (wordsTyped == 0) {
     if (timerHandler !== undefined) {
@@ -215,6 +228,7 @@ function checkKeyPress(e) {
   }
   wordsTyped += 1;
   if (wordsTyped == passageLength) {
+    clearInterval(timerHandler)
     alert("Completed");
   }
 }
