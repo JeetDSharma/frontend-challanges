@@ -130,18 +130,51 @@ const pasageData = {
 let passageLength = 0;
 let wordsTyped = 0;
 let startTime = 0;
-
+let timerHandler = undefined;
 document.addEventListener("DOMContentLoaded", function () {
   initializeTypingTest();
 });
 
-function setTime(){
+function setTimeZero(){
+
+    const timeSpan = document.getElementById('time')
+    timeSpan.innerHTML = "00:00"
+}
+
+function setTime(mode){
+    console.log(mode)
+    const timeSpan = document.getElementById('time')
+    const curTime = Date.now()
     
+    let timeSecond = Math.floor((curTime-startTime)/1000)
+    let timeMinute = Math.floor(timeSecond/60)
+    
+    timeSecond = timeSecond%60
+    console.log(timeSecond,timeMinute)
+    let timeSecondString = "00"
+    let timeMinuteString = "00"
+
+    if (timeSecond < 10){
+        timeSecondString = "0"+String(timeSecond)
+    }
+    else{
+        timeSecondString = String(timeSecond)
+    }
+    if (timeMinute < 10){
+        timeMinuteString = "0"+String(timeMinute)
+    }else{
+        timeMinuteString = String(timeMinute)
+    }
+
+    timeSpan.innerHTML = timeMinuteString+":"+timeSecondString
 }
 
 function checkKeyPress(e) {
     let correctKeyStroke = 0;
     let incorrectKeyStroke = 0;
+
+    const modeElement = document.querySelector('input[name="mode"]:checked');
+    const mode = String(modeElement.value);
 
     const keyPressed = e.key;
     const characterId = "char-" + String(wordsTyped);
@@ -154,7 +187,11 @@ function checkKeyPress(e) {
       return;
     }
     if(wordsTyped == 0){
+        if(timerHandler !== undefined){
+            clearInterval(timerHandler)
+        }
         startTime = Date.now()
+        timerHandler = setInterval(setTime,1000,mode)
         console.log(startTime)
     }
     if (currentChar === keyPressed) {
@@ -170,6 +207,10 @@ function checkKeyPress(e) {
 }
 
 function initializeTypingTest() {
+    if(timerHandler !== undefined){
+            clearInterval(timerHandler)
+            setTimeZero()
+        }
   const passageSpan = document.getElementById("passage");
   const difficultyElement = document.querySelector(
     'input[name="difficulty"]:checked',
