@@ -246,6 +246,7 @@ function checkKeyPress(e) {
   const keyPressed = e.key;
   const characterId = "char-" + String(wordsTyped);
   const currentCharSpan = document.getElementById(characterId);
+  currentCharSpan.classList.add('currentChar')
   const currentChar = currentCharSpan.innerHTML;
 
   if (keyPressed.length > 1) {
@@ -269,7 +270,11 @@ function checkKeyPress(e) {
     currentCharSpan.style.color = "red";
     incorrectKeyStroke += 1;
   }
+  currentCharSpan.classList.remove('currentChar')
   wordsTyped += 1;
+  const nextCharId = "char-" + String(wordsTyped);
+  const nextCharSpan = document.getElementById(nextCharId);
+  nextCharSpan.classList.add('currentChar')
   setAccuracy()
   if (wordsTyped == passageLength) {
     handleTestCompletion();
