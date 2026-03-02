@@ -24,7 +24,7 @@
       <div class="stat">
         <p>WPM: <span>WPM</span></p>
         <p>Accuracy: <span>Accuracy</span></p>
-        <p>Time: <span>Time</span></p>
+        <p>Time: <span id="time">0:00</span></p>
       </div>
       <div class="difficulty" onchange="initializeTypingTest()">
         <label>
@@ -40,7 +40,7 @@
           <span>Hard</span>
         </label>
       </div>
-      <div class="mode" onchange="initializeTypingTest()">
+      <div class="mode">
         <label>
           <input type="radio" name="mode" value="timed" checked>
           <span>Timed (60s)</span>
