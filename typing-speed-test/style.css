@@ -1,0 +1,84 @@
+
+*{
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+background-color: hsl(0, 0%, 7%);
+color: hsl(0, 0%, 100%);
+}
+
+body {
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.container {
+    width: 100%;
+    max-width: 90vw;
+    padding: 2rem;
+    background-color: gray;
+    height: 100%;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    gap: 2rem;
+}
+.stat_header {
+    display: flex;
+    gap: 3rem;
+    padding: 1rem 2rem;
+    justify-content: space-around
+}
+.stat {
+    display: flex;
+    gap: 1rem;
+}
+.difficulty {
+    display: flex;
+    gap: 1rem;
+}
+.mode {
+    display: flex;
+    gap: 1rem;
+}
+.typing_test_section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 3rem;
+}
+.typing_test_section textarea {
+    resize: none;
+    width: 90%;
+}
+
+.restart_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: hsl(240, 3%, 46%);
+    align-self: center;
+}
+.restart_btn img{
+    height: 1rem;
+    width: 1rem;
+}
+.restart_btn button{
+    padding: 0.5rem;
+    background-color: inherit;
+
+}
+
+/* .difficulty label input{
+    display: none;
+} */

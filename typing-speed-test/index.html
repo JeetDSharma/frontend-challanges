@@ -9,49 +9,88 @@
   <title>Frontend Mentor | Typing Speed Test</title>
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+  <link rel="stylesheet" href="./style.css">
+  <script src="index.js"></script>
 </head>
-<body>
+<body onkeydown="checkKeyPress(event)">
+  
+  <div class="container">
+    <div class="header">
 
-  Personal best: <!-- PB --> WPM
+      <h3>Typing Speed Test</h3>
+      <p>Personal Best: 72 WPM</p>
+    </div>
+    <div class="stat_header">
+      <div class="stat">
+        <p>WPM: <span>WPM</span></p>
+        <p>Accuracy: <span>Accuracy</span></p>
+        <p>Time: <span>Time</span></p>
+      </div>
+      <div class="difficulty">
+        <label>
+          <input type="radio" name="difficulty" value="easy"/>
+          <span>Easy</span>
+        </label>
+        <label>
+          <input type="radio" name="difficulty" value="medium"/>
+          <span>Medium</span>
+        </label>
+        <label>
+          <input type="radio" name="difficulty" value="hard"/>
+          <span>Hard</span>
+        </label>
+      </div>
+      <div class="mode">
+        <label>
+          <input type="radio" name="mdoe" value="timed">
+          <span>Timed (60s)</span>
+        </label>
+        <label>
+          <input type="radio" name="mdoe" value="passage">
+          <span>Passage</span>
+        </label>
+      </div>
+    </div>
+    <div class="typing_test_section">
+      <span class="typing_test"></span>
+    </div>
+    <div class="restart_btn">
+      <button >Restart Test</button>
+      <img src="./assets/images/icon-restart.svg" alt="">
+    </div>
+  </div>
+  <!-- Personal best: PB WPM -->
 
-  WPM: <!-- WPM -->
-  Accuracy: <!-- Accuracy -->
-  Time: <!-- Time -->
+  <!-- WPM: WPM -->
+  <!-- Accuracy: Accuracy -->
+  <!-- Time: Time -->
 
-  Difficulty:
+  <!-- Difficulty:
   Easy
   Medium
   Hard
 
   Mode:
   Timed (60s)
-  Passage
+  Passage -->
 
   <!-- Passage -->
 
-  Start Typing Test
-  Or click the text and start typing
+  <!-- Start Typing Test
+  Or click the text and start typing -->
 
   <!-- Test Complete Start -->
 
-  Test Complete!
-  Solid run. Keep pushing to beat your high score.
+  <!-- Test Complete!
+  Solid run. Keep pushing to beat your high score. -->
 
-  WPM: <!-- WPM -->
-  Accuracy: <!-- Accuracy -->
-  Characters: <!-- Correct/Incorrect -->
+  <!-- WPM: WPM -->
+  <!-- Accuracy: Accuracy -->
+  <!-- Characters: Correct/Incorrect -->
 
-  Go Again
+  <!-- Go Again -->
   
   <!-- Test Complete End -->
 
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
 </body>
 </html>
