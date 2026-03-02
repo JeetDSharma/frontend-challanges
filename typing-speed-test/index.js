@@ -134,6 +134,7 @@ let startTime = 0;
 let correctKeyStroke = 0;
 let incorrectKeyStroke = 0;
 let timerHandler = undefined;
+let wpmHandler = undefined;
 document.addEventListener("DOMContentLoaded", function () {
   initializeTypingTest();
 });
@@ -214,9 +215,11 @@ function checkKeyPress(e) {
   if (wordsTyped == 0) {
     if (timerHandler !== undefined) {
       clearInterval(timerHandler);
+      clearInterval(wpmHandler)
     }
     startTime = Date.now();
     timerHandler = setInterval(setTime, 1000, mode);
+    wpmHandler = setInterval(setWPM, 1000, startTime)
     console.log(startTime);
   }
   if (currentChar === keyPressed) {
@@ -229,6 +232,7 @@ function checkKeyPress(e) {
   wordsTyped += 1;
   if (wordsTyped == passageLength) {
     clearInterval(timerHandler)
+    clearInterval(wpmHandler)
     alert("Completed");
   }
 }
@@ -236,6 +240,7 @@ function checkKeyPress(e) {
 function initializeTypingTest() {
   if (timerHandler !== undefined) {
     clearInterval(timerHandler);
+    clearInterval(wpmHandler)
     resetStats();
   }
   const passageSpan = document.getElementById("passage");
