@@ -54,11 +54,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 80%;
     padding-bottom: 3rem;
-}
-.typing_test_section textarea {
-    resize: none;
-    width: 90%;
 }
 
 .restart_btn {

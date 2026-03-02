@@ -26,13 +26,13 @@
         <p>Accuracy: <span>Accuracy</span></p>
         <p>Time: <span>Time</span></p>
       </div>
-      <div class="difficulty">
+      <div class="difficulty" onchange="initializeTypingTest()">
         <label>
           <input type="radio" name="difficulty" value="easy"/>
           <span>Easy</span>
         </label>
         <label>
-          <input type="radio" name="difficulty" value="medium"/>
+          <input type="radio" name="difficulty" value="medium"/ checked>
           <span>Medium</span>
         </label>
         <label>
@@ -40,21 +40,21 @@
           <span>Hard</span>
         </label>
       </div>
-      <div class="mode">
+      <div class="mode" onchange="initializeTypingTest()">
         <label>
-          <input type="radio" name="mdoe" value="timed">
+          <input type="radio" name="mode" value="timed" checked>
           <span>Timed (60s)</span>
         </label>
         <label>
-          <input type="radio" name="mdoe" value="passage">
-          <span>Passage</span>
+          <input type="radio" name="mode" value="passage">
+          <span id="passage">Passage</span>
         </label>
       </div>
     </div>
     <div class="typing_test_section">
-      <span class="typing_test"></span>
+      <span class="typing_test" id="typing_test_span">Placeholder</span>
     </div>
-    <div class="restart_btn">
+    <div class="restart_btn" onclick="initializeTypingTest()">
       <button >Restart Test</button>
       <img src="./assets/images/icon-restart.svg" alt="">
     </div>
