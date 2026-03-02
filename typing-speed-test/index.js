@@ -135,17 +135,40 @@ let correctKeyStroke = 0;
 let incorrectKeyStroke = 0;
 let timerHandler = undefined;
 let wpmHandler = undefined;
+let typingTestStatus = "pending"
+let wpm = 0;
+let netWpm = 0;
 document.addEventListener("DOMContentLoaded", function () {
   initializeTypingTest();
 });
 
+
+
 function resetStats() {
   const timeSpan = document.getElementById("time");
-  const wpmSpan = document.getElementById("wpm");
+  const wpmSpan = document.getElementById("raw_wpm");
+  const netWpmSpan = document.getElementById("net_wpm");
   const accuracySpan = document.getElementById("accuracy");
   timeSpan.innerHTML = "00:00";
   wpmSpan.innerHTML = "0";
+  netWpmSpan.innerHTML = "0";
   accuracySpan.innerHTML = "0%";
+  typingTestStatus = "pending"
+}
+
+function handleTestCompletion() {
+
+    typingTestStatus = "completed"
+  clearInterval(timerHandler)
+  clearInterval(wpmHandler)
+  let bestWPM = localStorage.getItem("bestWPM");
+     if( bestWPM == null || netWpm > parseInt(bestWPM)) {
+       localStorage.setItem("bestWPM", netWpm)
+     }
+     bestWPM = localStorage.getItem("bestWPM");
+const personalBestSpan = document.getElementById("personal_best");
+personalBestSpan.innerHTML = bestWPM;
+  alert("Completed");
 }
 
 function setTime(mode) {
@@ -156,6 +179,10 @@ function setTime(mode) {
   const timeNanoSeconds = curTime - startTime //use for baseline calculations
   const timeSecond = Math.floor( timeNanoSeconds/ 1000) % 60;
   const timeMinute = Math.floor(timeNanoSeconds / 60000);
+
+  if (mode == "timed" && timeMinute == 1){
+     handleTestCompletion();
+  }
 
   console.log(timeSecond, timeMinute);
   let timeSecondString = "00";
@@ -175,7 +202,7 @@ function setTime(mode) {
   timeSpan.innerHTML = timeMinuteString + ":" + timeSecondString;
 }
 
-function setAccuracy(startTime){
+function setAccuracy(){
     const accuracySpan = document.getElementById("accuracy");
     const accuracy = Math.floor((correctKeyStroke/wordsTyped)*100)
     
@@ -183,19 +210,24 @@ function setAccuracy(startTime){
 }
 
 function setWPM(startTime){
-    const wpmSpan = document.getElementById("wpm");
+    const wpmSpan = document.getElementById("raw_wpm");
+    const netWpmSpan = document.getElementById("net_wpm");
 
     const curTime = Date.now();
     const timeNanoSeconds = curTime - startTime //use for baseline calculations
     const timeMinute = timeNanoSeconds / 60000;
 
-    const wpm = Math.round(wordsTyped/5 / timeMinute)
+    wpm = Math.round(wordsTyped/5 / timeMinute)
+    netWpm = Math.round(wpm * (correctKeyStroke/wordsTyped))
 
     wpmSpan.innerHTML = wpm
-
+    netWpmSpan.innerHTML = netWpm
 }
 
 function checkKeyPress(e) {
+  if (typingTestStatus == "completed") {
+    return;
+  }
   const modeElement = document.querySelector('input[name="mode"]:checked');
   const mode = String(modeElement.value);
 
@@ -207,11 +239,7 @@ function checkKeyPress(e) {
   if (keyPressed.length > 1) {
     return;
   }
-  // detect spacebar
-  if(keyPressed == ' '){
-        setAccuracy()
-        setWPM(startTime)
-  }
+  
   if (wordsTyped == 0) {
     if (timerHandler !== undefined) {
       clearInterval(timerHandler);
@@ -230,10 +258,9 @@ function checkKeyPress(e) {
     incorrectKeyStroke += 1;
   }
   wordsTyped += 1;
+  setAccuracy()
   if (wordsTyped == passageLength) {
-    clearInterval(timerHandler)
-    clearInterval(wpmHandler)
-    alert("Completed");
+    handleTestCompletion();
   }
 }
 
@@ -248,6 +275,12 @@ function initializeTypingTest() {
     'input[name="difficulty"]:checked',
   );
   const modeElement = document.querySelector('input[name="mode"]:checked');
+  const personalBestSpan = document.getElementById("personal_best");
+  const bestWPM = localStorage.getItem("bestWPM");
+
+  if(bestWPM !== null){
+    personalBestSpan.innerHTML = bestWPM;
+  }
 
   console.log(difficultyElement?.value);
   console.log(modeElement?.value);
