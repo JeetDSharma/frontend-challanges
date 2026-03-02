@@ -130,83 +130,100 @@ const pasageData = {
 let passageLength = 0;
 let wordsTyped = 0;
 let startTime = 0;
+
+let correctKeyStroke = 0;
+let incorrectKeyStroke = 0;
 let timerHandler = undefined;
 document.addEventListener("DOMContentLoaded", function () {
   initializeTypingTest();
 });
 
-function setTimeZero(){
-
-    const timeSpan = document.getElementById('time')
-    timeSpan.innerHTML = "00:00"
+function resetStats() {
+  const timeSpan = document.getElementById("time");
+  const wpmSpan = document.getElementById("wpm");
+  const accuracySpan = document.getElementById("accuracy");
+  timeSpan.innerHTML = "00:00";
+  wpmSpan.innerHTML = "0";
+  accuracySpan.innerHTML = "0%";
 }
 
-function setTime(mode){
-    console.log(mode)
-    const timeSpan = document.getElementById('time')
-    const curTime = Date.now()
-    
-    let timeSecond = Math.floor((curTime-startTime)/1000)
-    let timeMinute = Math.floor(timeSecond/60)
-    
-    timeSecond = timeSecond%60
-    console.log(timeSecond,timeMinute)
-    let timeSecondString = "00"
-    let timeMinuteString = "00"
+function setTime(mode) {
+  console.log(mode);
+  const timeSpan = document.getElementById("time");
+  const curTime = Date.now();
 
-    if (timeSecond < 10){
-        timeSecondString = "0"+String(timeSecond)
-    }
-    else{
-        timeSecondString = String(timeSecond)
-    }
-    if (timeMinute < 10){
-        timeMinuteString = "0"+String(timeMinute)
-    }else{
-        timeMinuteString = String(timeMinute)
-    }
+  let timeSecond = Math.floor((curTime - startTime) / 1000);
+  let timeMinute = Math.floor(timeSecond / 60);
 
-    timeSpan.innerHTML = timeMinuteString+":"+timeSecondString
+  timeSecond = timeSecond % 60;
+  console.log(timeSecond, timeMinute);
+  let timeSecondString = "00";
+  let timeMinuteString = "00";
+
+  if (timeSecond < 10) {
+    timeSecondString = "0" + String(timeSecond);
+  } else {
+    timeSecondString = String(timeSecond);
+  }
+  if (timeMinute < 10) {
+    timeMinuteString = "0" + String(timeMinute);
+  } else {
+    timeMinuteString = String(timeMinute);
+  }
+
+  timeSpan.innerHTML = timeMinuteString + ":" + timeSecondString;
+}
+
+function setAccuracy(){
+    const accuracySpan = document.getElementById("accuracy");
+    const accuracy = Math.floor((correctKeyStroke/wordsTyped)*100)
+    
+    accuracySpan.innerHTML = String(accuracy)+"%"
 }
 
 function checkKeyPress(e) {
-    let correctKeyStroke = 0;
-    let incorrectKeyStroke = 0;
+  const modeElement = document.querySelector('input[name="mode"]:checked');
+  const mode = String(modeElement.value);
 
-    const modeElement = document.querySelector('input[name="mode"]:checked');
-    const mode = String(modeElement.value);
+  const keyPressed = e.key;
+  const characterId = "char-" + String(wordsTyped);
+  const currentCharSpan = document.getElementById(characterId);
+  const currentChar = currentCharSpan.innerHTML;
 
-    const keyPressed = e.key;
-    const characterId = "char-" + String(wordsTyped);
-    const currentCharSpan = document.getElementById(characterId);
-    const currentChar = currentCharSpan.innerHTML;
+  if (keyPressed.length > 1) {
+    return;
+  }
+  // detect spacebar
+  if(keyPressed == ' '){
 
-    if (keyPressed.length > 1){return}
-    if(wordsTyped == 0){
-        if(timerHandler !== undefined){
-            clearInterval(timerHandler)
-        }
-        startTime = Date.now()
-        timerHandler = setInterval(setTime,1000,mode)
-        console.log(startTime)
+        setAccuracy()
+  }
+  if (wordsTyped == 0) {
+    if (timerHandler !== undefined) {
+      clearInterval(timerHandler);
     }
-    if (currentChar === keyPressed) {
-      currentCharSpan.style.color = "green";
-    } else {
-      currentCharSpan.style.color = "red";
-    }
-    wordsTyped += 1;
-  
-  if(wordsTyped == passageLength) {
-    alert('Completed')
+    startTime = Date.now();
+    timerHandler = setInterval(setTime, 1000, mode);
+    console.log(startTime);
+  }
+  if (currentChar === keyPressed) {
+    currentCharSpan.style.color = "green";
+    correctKeyStroke += 1;
+  } else {
+    currentCharSpan.style.color = "red";
+    incorrectKeyStroke += 1;
+  }
+  wordsTyped += 1;
+  if (wordsTyped == passageLength) {
+    alert("Completed");
   }
 }
 
 function initializeTypingTest() {
-    if(timerHandler !== undefined){
-            clearInterval(timerHandler)
-            setTimeZero()
-        }
+  if (timerHandler !== undefined) {
+    clearInterval(timerHandler);
+    resetStats();
+  }
   const passageSpan = document.getElementById("passage");
   const difficultyElement = document.querySelector(
     'input[name="difficulty"]:checked',
@@ -217,6 +234,8 @@ function initializeTypingTest() {
   console.log(modeElement?.value);
 
   wordsTyped = 0;
+  correctKeyStroke = 0;
+  incorrectKeyStroke = 0;
 
   if (
     difficultyElement?.value !== undefined &&
