@@ -130,6 +130,7 @@ const pasageData = {
   ]
 }
 
+let passageLength = 0;
 
 document.addEventListener("DOMContentLoaded", function () {
   initializeTypingTest();
@@ -154,15 +155,30 @@ function initializeTypingTest() {
         console.log(difficulty,mode);
         const randomNumber = Math.floor(Math.random() * 10 + 1);
         const passageArray = pasageData[difficulty]
-
+        
         const passageId = difficulty+"-"+String(randomNumber)
         console.log(passageId)
         console.log(passageArray)
 
-        const passage = passageArray.find(item => item.id === passageId);
-        console.log(passage.text)
+        const passage = passageArray.find(item => item.id === passageId)
+        const passageText = passage.text
+        console.log(passageText)
 
-        document.getElementById('typing_test_span').textContent = passage.text
+        passageLength = passageText.length
+        console.log("length of passage is " + passageLength)
+
+        const typing_test_span = document.getElementById('typing_test_span')
+        typing_test_span.innerHTML = ""
+        console.log(typing_test_span)
+        for(let i=0; i <passageLength; i++){
+            const newSpan = document.createElement('span')
+            newSpan.innerHTML = passageText[i]
+            newSpan.id = "char-"+String(i)
+            typing_test_span.appendChild(newSpan)
+        }
+
+        // document.getElementById('typing_test_span').textContent = passage.text
+
     }
 }
 
