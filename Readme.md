@@ -1,26 +1,22 @@
-## README
+# Frontend  Challenges
 
 A collection of small Frontend challenges to practice responsive UI, layout, and styling.
 
-## Table of Contents
+## Projects
 
-- [Blog Preview Card](#blog-preview-card)
-- [Contact Form](#contact-form) 
+### Typing Speed Test
+Real-time typing speed calculator with WPM tracking.
 
-## Blog Preview Card
+**Tech Stack:** HTML, CSS, JavaScript  
+**[Live Demo](https://frontend-challenge-projects.netlify.app/typing-speed-test/)** | **[Source Code](https://github.com/JeetDSharma/frontend-challanges/tree/main/typing-speed-test)**
+### Contact Form
+Interactive contact form with validation and error states.
 
-- [Live Demo](https://frontend-challenge-projects.netlify.app/blog-card//)
-- [Source Code](https://github.com/JeetDSharma/frontend-challanges/tree/main/blog-card)
-- Tech Stack: HTML, CSS
+**Tech Stack:** HTML, CSS, JavaScript  
+**[Live Demo](https://frontend-challenge-projects.netlify.app/contact-form/)** | **[Source Code](https://github.com/JeetDSharma/frontend-challanges/tree/main/contact-form)**
 
-## Contact Form
+### Blog Preview Card
+A responsive blog card component with hover effects.
 
-- [Live Demo](https://frontend-challenge-projects.netlify.app/contact-form//)
-- [Source Code](https://github.com/JeetDSharma/frontend-challanges/tree/main/contact-form)
-- Tech Stack: HTML, CSS, JS
-
-## Typing Speed Test
-
-- [Live Demo](https://frontend-challenge-projects.netlify.app/typing-speed-test//)
-- [Source Code](https://github.com/JeetDSharma/frontend-challanges/tree/main/typing-speed-test)
-- Tech Stack: HTML, CSS, JS
+**Tech Stack:** HTML, CSS  
+**[Live Demo](https://frontend-challenge-projects.netlify.app/blog-card/)** | **[Source Code](https://github.com/JeetDSharma/frontend-challanges/tree/main/blog-card)**
