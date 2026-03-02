@@ -180,12 +180,8 @@ function checkKeyPress(e) {
     const characterId = "char-" + String(wordsTyped);
     const currentCharSpan = document.getElementById(characterId);
     const currentChar = currentCharSpan.innerHTML;
-    if (
-      keyPressed.toLowerCase() === "shift" ||
-      keyPressed.toLocaleLowerCase() == "capslock"
-    ) {
-      return;
-    }
+
+    if (keyPressed.length > 1){return}
     if(wordsTyped == 0){
         if(timerHandler !== undefined){
             clearInterval(timerHandler)
