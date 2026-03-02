@@ -274,7 +274,9 @@ function checkKeyPress(e) {
   wordsTyped += 1;
   const nextCharId = "char-" + String(wordsTyped);
   const nextCharSpan = document.getElementById(nextCharId);
-  nextCharSpan.classList.add('currentChar')
+  if (nextCharSpan) {
+    nextCharSpan.classList.add('currentChar')
+  }
   setAccuracy()
   if (wordsTyped == passageLength) {
     handleTestCompletion();
