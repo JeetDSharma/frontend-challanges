@@ -236,6 +236,22 @@ function setWPM(startTime){
     netWpmSpan.innerHTML = netWpm
 }
 
+function addCaret(wordsTyped) {
+    const characterId = "char-" + String(wordsTyped);
+    const currentCharSpan = document.getElementById(characterId);
+    if ( currentCharSpan !== null ){
+        currentCharSpan.classList.add('currentChar')
+    }
+}
+
+function removeCaret(wordsTyped) {
+    const characterId = "char-" + String(wordsTyped);
+    const currentCharSpan = document.getElementById(characterId);
+    if ( currentCharSpan !== null ){
+        currentCharSpan.classList.remove('currentChar')
+    }
+}
+
 function checkKeyPress(e) {
   if (typingTestStatus == "completed") {
     return;
@@ -246,7 +262,10 @@ function checkKeyPress(e) {
   const keyPressed = e.key;
   const characterId = "char-" + String(wordsTyped);
   const currentCharSpan = document.getElementById(characterId);
-  currentCharSpan.classList.add('currentChar')
+  if(wordsTyped > 0){
+    removeCaret(wordsTyped - 1)
+  }
+  addCaret(wordsTyped)
   const currentChar = currentCharSpan.innerHTML;
 
   if (keyPressed.length > 1) {
@@ -270,12 +289,12 @@ function checkKeyPress(e) {
     currentCharSpan.style.color = "red";
     incorrectKeyStroke += 1;
   }
-  currentCharSpan.classList.remove('currentChar')
+  removeCaret(wordsTyped)
   wordsTyped += 1;
   const nextCharId = "char-" + String(wordsTyped);
   const nextCharSpan = document.getElementById(nextCharId);
   if (nextCharSpan) {
-    nextCharSpan.classList.add('currentChar')
+    addCaret(wordsTyped)
   }
   setAccuracy()
   if (wordsTyped == passageLength) {
@@ -339,6 +358,9 @@ function initializeTypingTest() {
       newSpan.innerHTML = passageText[i];
       newSpan.id = "char-" + String(i);
       typing_test_span.appendChild(newSpan);
+      if(i === 0){
+        addCaret(0)
+      }
     }
 
     // document.getElementById('typing_test_span').textContent = passage.text
